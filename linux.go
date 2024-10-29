@@ -70,17 +70,17 @@ func GetAddrs() ([]IPv6, error) {
 		line_split := strings.Fields(line)
 
 		// Parse IPv6 address
-		addr.address, err = hex.DecodeString(line_split[0])
+		addr.Address, err = hex.DecodeString(line_split[0])
 		if err != nil {
 			err = fmt.Errorf("error parsing address: %v", err)
 			return nil, err
 		}
 
 		// Parse Netlink device number hex to int
-		fmt.Sscanf(line_split[1], "%x", &addr.netlink)
+		fmt.Sscanf(line_split[1], "%x", &addr.Netlink)
 
 		// Parse Prefix length hex to int
-		fmt.Sscanf(line_split[2], "%x", &addr.prefix)
+		fmt.Sscanf(line_split[2], "%x", &addr.Prefix)
 
 		// Parse Scope
 		scope, err := strconv.ParseUint(line_split[3], 16, 64)
@@ -90,17 +90,17 @@ func GetAddrs() ([]IPv6, error) {
 		}
 		switch scope {
 		case IPV6_ADDR_SCOPE_NODELOCAL:
-			addr.scope = "NodeLocal"
+			addr.Scope = "NodeLocal"
 		case IPV6_ADDR_SCOPE_LINKLOCAL:
-			addr.scope = "LinkLocal"
+			addr.Scope = "LinkLocal"
 		case IPV6_ADDR_SCOPE_SITELOCAL:
-			addr.scope = "SiteLocal"
+			addr.Scope = "SiteLocal"
 		case IPV6_ADDR_SCOPE_COMPAT_V4:
-			addr.scope = "CompatV4"
+			addr.Scope = "CompatV4"
 		case IPV6_ADDR_SCOPE_GLOBAL:
-			addr.scope = "Global"
+			addr.Scope = "Global"
 		default:
-			addr.scope = "Unknown"
+			addr.Scope = "Unknown"
 		}
 
 		// Parse Flags
@@ -115,17 +115,17 @@ func GetAddrs() ([]IPv6, error) {
 		flag_l3 := flags & 0xF00
 
 		if flag_l1 != 0 {
-			addr.flags = append(addr.flags, flag_map[flag_l1])
+			addr.Flags = append(addr.Flags, flag_map[flag_l1])
 		}
 		if flag_l2 != 0 {
-			addr.flags = append(addr.flags, flag_map[flag_l2])
+			addr.Flags = append(addr.Flags, flag_map[flag_l2])
 		}
 		if flag_l3 != 0 {
-			addr.flags = append(addr.flags, flag_map[flag_l3])
+			addr.Flags = append(addr.Flags, flag_map[flag_l3])
 		}
 
 		// Parse device name
-		addr.dev = line_split[5]
+		addr.Dev = line_split[5]
 
 		addrs = append(addrs, addr)
 	}

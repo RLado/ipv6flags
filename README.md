@@ -5,12 +5,12 @@ Use the function `func GetAddrs() ([]IPv6, error)` to get a list of all the IPv6
 
 ```go
 type IPv6 struct {
-	address net.IP   // IPv6 address
-	netlink int      // Netlink device number
-	prefix  int      // Prefix length
-	scope   string   // Scope of the address
-	flags   []string // Interface flags
-	dev     string   // Device name
+	Address net.IP   // IPv6 address
+	Netlink int      // Netlink device number
+	Prefix  int      // Prefix length
+	Scope   string   // Scope of the address
+	Flags   []string // Interface flags
+	Dev     string   // Device name
 }
 ```
 
@@ -54,13 +54,22 @@ Flags: [Permanent]
 Device: lo
 ```
 
+## OS support
+- Linux ✅
+- FreeBSD ❌
+- Windows ❌
+- MacOS ❌
+
 ## Sources:
 #### Linux
 - https://kernel.org/
 - https://mirrors.deepspace6.net/Linux+IPv6-HOWTO/proc-net.html
 
+#### FreeBSD
+> To be added
+
 #### Windows
-> Under development
+> To be added
 
 #### MacOS
-> Under development
+> To be added
