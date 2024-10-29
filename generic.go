@@ -5,5 +5,5 @@ package ipv6flags
 import "errors"
 
 func GetAddrs() ([]IPv6, error) {
-	return nil, errors.New("Unsupported platform")
+	return nil, errors.New("unsupported platform")
 }
